@@ -1,39 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>My Imageboard</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-    <h1>My Imageboard with Dill <3</h1>
-
-    <!--   this container is for our Vue instance. It will have access to our Vue code. -->
-    <div id='main'>
-
-        <h2>Hi {{ name }}. Isn't Vue awesome?!??</h2>
-        <h2>2 * 2 = {{ 2 * 2 }}</h2>
-        <h2>Name capitalized: {{ name.toUpperCase() }}</h2>
-
-
-        <h3 v-if='seen'>Yay you can see me!!!!!</h3>
-        <h3 v-else>'seen' is falsey if you can see this!</h3>
-
-        <!-- LOOPING IN VUE! -->
-        <!-- 'city' is our iterator -->
-        <!-- 'cities' refers to the property inside data in script.js that we're looping through  -->
-        <ul>
-        <ul>
-            <li v-for='city in cities' @click='myFunction'>
-                {{ city.name }}, {{ city.country }}
-            </li>
-        </ul>
-
-    </div>
-
-    <script src="js/vue.js"></script>
-    <script src="js/axios.min.js"></script>
-    <!-- ORDER MATTERS! make sure script.js goes last -->
-    <script src="js/script.js"></script>
-</body>
+    <head>
+        <title>My Imageboard</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <h1>My Imageboard with Dill <3</h1>
+        <div id="main">
+            <div v-for="image in images" @click="myFunction">
+                <img v-bind:src="image.url" alt="" />
+                <h3>{{image.title}}</h3>
+                <p>{{image.description}}</p>
+            </div>
+        </div>
+        <script src="js/vue.js"></script>
+        <script src="js/axios.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
