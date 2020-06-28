@@ -1,18 +1,37 @@
 body {
-    background-color: teal;
+    background-color: rgb(255, 238, 143);
+    margin: 0;
+    box-sizing: border-box;
 }
 
-#main {
+.title {
+    text-align: center;
+}
+
+/* #main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+} */
+
+.form-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
+
+/* .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+} */
 
 .img-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 250px;
 }
 
 img {

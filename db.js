@@ -13,3 +13,14 @@ exports.addImg = () => {
         SELECT * FROM images;
     `);
 };
+
+exports.addNewImg = (url, username, title, description) => {
+    return db.query(
+        `
+        INSERT INTO images (url, username, title, description)
+        VALUES ($1, $2, $3, $4)
+        RETURNING *
+    `,
+        [url, username, title, description]
+    );
+};
