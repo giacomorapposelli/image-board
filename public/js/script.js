@@ -13,6 +13,7 @@
         mounted: function () {
             var self = this;
             axios.get("/images").then(function (response) {
+                console.log("MOUNTED RESPONSE: ", response);
                 self.images = response.data;
             });
         },

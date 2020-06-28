@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(255, 238, 143);
+    background-color: rgb(255, 243, 177);
     margin: 0;
     box-sizing: border-box;
 }
@@ -8,11 +8,11 @@ body {
     text-align: center;
 }
 
-/* #main {
+#main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-} */
+}
 
 .form-container {
     display: flex;
@@ -20,21 +20,32 @@ body {
     justify-content: space-around;
 }
 
-/* .container {
+.container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin-top: 30px;
-} */
+}
 
 .img-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 250px;
+    justify-content: center;
+    width: 350px;
+    border: 2px solid tomato;
+    border-radius: 5px;
 }
 
 img {
+    margin-top: 10px;
     width: 330px;
     height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.img-title {
+    color: tomato;
+    font-size: 20px;
 }

@@ -5,8 +5,8 @@
         <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
-        <h1 class="title">My Imageboard with Dill <3</h1>
         <div id="main">
+            <h1 class="title">My Imageboard with Dill <3</h1> 
             <div class="form-container">
 
                 <form>
@@ -41,7 +41,7 @@
 
                 <div v-for="image in images" class="img-container">
                     <img v-bind:src="image.url" alt="" />
-                    <h4>{{image.title}}</h4>
+                    <h4 class="img-title">{{image.title}}</h4>
                     <p>{{image.description}}</p>
                 </div>
             </div>
