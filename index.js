@@ -1,8 +1,15 @@
 const express = require("express");
 const app = express();
-const { addNewImg, addImg } = require("./db");
+const {
+    addNewImg,
+    addImg,
+    getImageInfo,
+    getImageComments,
+    addComment,
+} = require("./db");
 
 app.use(express.static("public"));
+app.use(express.json());
 
 /////BOILERPLATE //////////
 const multer = require("multer");
@@ -43,9 +50,7 @@ app.get("/images", (req, res) => {
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     console.log("file:", req.file);
-
-    const { filename } = req.file;
-    const imageUrl = `${s3Url}${filename}`;
+    const imageUrl = `${s3Url}${req.file.filename}`;
     console.log("imgurl: ", imageUrl);
     addNewImg(
         imageUrl,
@@ -56,6 +61,38 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         res.json(rows[0]);
     });
     console.log("input: ", req.body);
+});
+
+app.get("/image/:id", (req, res) => {
+    getImageInfo(req.params.id)
+        .then((result) => {
+            console.log(req.params.id);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.get("/comments/:id", (req, res) => {
+    getImageComments(req.params.id)
+        .then((result) => {
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.post("/comments", (req, res) => {
+    addComment(req.body.imageId, req.body.username, req.body.comment)
+        .then(({ rows }) => {
+            console.log("comment: ", rows);
+            res.json(rows[0]);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 app.listen(8080, () => console.log("IB server is listening...."));
