@@ -40,7 +40,7 @@ body {
     border-radius: 5px;
 }
 
-img {
+.card-img {
     margin-top: 10px;
     width: 330px;
     height: 200px;
@@ -56,8 +56,8 @@ img {
 .modal {
     /* display: none; */
     width: 80%;
-    height: 80%;
-    z-index: 5;
+    height: 95%;
+    z-index: 1;
     border: 3px solid black;
     border-radius: 15px;
     position: absolute;
@@ -82,10 +82,21 @@ img {
 .comments-container {
     height: auto;
     width: 90%;
-    background-color: rgb(161, 161, 161);
-    border-radius: 5px;
     margin-top: 1%;
     margin-bottom: 1%;
     overflow: scroll;
-    padding-left: 10px;
+}
+
+.comment {
+    border-radius: 5px;
+    padding-left: 1%;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-bottom: 1%;
+    background-color: rgb(185, 185, 185);
+}
+
+.modal-img {
+    height: 300px;
+    margin-top: 1%;
 }

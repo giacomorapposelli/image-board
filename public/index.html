@@ -46,6 +46,7 @@
                     <p>{{image.description}}</p>
                 </div>
             </div>
+            
             <first-component v-if='id' :id='id' @close='closeMe'></first-component>
         </div>
         <script id='template' type='text/x-template'>
@@ -60,24 +61,26 @@
                         v-model="comment"
                         name="comment"
                         type="text"
-                        placeholder="comment"
+                        placeholder="your comment"
                     />
                     <input
-                        v-model="username"
+                        v-model="user"
                         name="username"
                         type="text"
-                        placeholder="username"
+                        placeholder="your username"
                     />
                     <button @click.prevent="postComments">Comment</button>
                 </form>
                 <div class="comments-container">
-                    <div class="comment">
 
                         <div v-for="comment in comments">
-                            <h4>{{comment.comment}}</h4>
-                            <p>{{comment.username}} on {{comment.created_at}}</p>
+                            <div class="comment">
+
+                                <h4>{{comment.comment}}</h4>
+                                <p>{{comment.username}} on {{comment.created_at}}</p>
+                            </div>
                         </div>
-                    </div>
+ 
                 </div>
             </div>
         </script>

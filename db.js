@@ -10,7 +10,8 @@ if (process.env.DATABASE_URL) {
 
 exports.addImg = () => {
     return db.query(`
-        SELECT * FROM images;
+        SELECT * FROM images
+        ORDER BY id DESC;
     `);
 };
 
@@ -41,6 +42,7 @@ exports.getImageComments = (id) => {
             * 
         FROM comments
         WHERE image_id = $1 
+        ORDER BY id DESC;
         `,
         [id]
     );

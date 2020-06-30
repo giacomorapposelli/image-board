@@ -12,6 +12,7 @@
                 url: "",
                 comments: [],
                 comment: "",
+                user: "",
                 created_at: "",
             };
         },
@@ -52,7 +53,7 @@
                 axios
                     .post("/comments", {
                         imageId: this.id,
-                        username: this.username,
+                        username: this.user,
                         comment: this.comment,
                     })
                     .then(function (response) {
@@ -81,7 +82,7 @@
             var self = this;
             axios.get("/images").then(function (response) {
                 console.log("MOUNTED RESPONSE: ", response);
-                self.images = response.data.reverse();
+                self.images = response.data;
             });
         },
         methods: {
