@@ -81,6 +81,7 @@
             created_at: "",
             lastId: null,
             more: true,
+            noMore: false,
         },
         mounted: function () {
             var self = this;
@@ -134,6 +135,7 @@
                         response.data[response.data.length - 1].last_id
                     ) {
                         self.more = false;
+                        self.noMore = true;
                     }
                 });
             },
