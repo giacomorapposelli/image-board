@@ -52,6 +52,9 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     console.log("file:", req.file);
     const imageUrl = `${s3Url}${req.file.filename}`;
     console.log("imgurl: ", imageUrl);
+    if (req.body.username == "") {
+        req.body.username = "Anonymous";
+    }
     addNewImg(
         imageUrl,
         req.body.username,
@@ -85,6 +88,12 @@ app.get("/comments/:id", (req, res) => {
 });
 
 app.post("/comments", (req, res) => {
+    if (req.body.username == "") {
+        req.body.username = "Anonymous";
+    }
+    if (req.body.comment == "") {
+        req.body.comment = "Speechless";
+    }
     addComment(req.body.imageId, req.body.username, req.body.comment)
         .then(({ rows }) => {
             console.log("comment: ", rows);

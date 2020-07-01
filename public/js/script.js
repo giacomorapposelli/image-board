@@ -24,11 +24,13 @@
                 .then(function (response) {
                     console.log("RESPONSE: ", response);
                     self.url = response.data.url;
-                    console.log("RES DATA URL ", response.data.url);
+                    console.log("RES DATA URL:   ", response.data.url);
                     self.title = response.data.title;
                     self.description = response.data.description;
                     self.username = response.data.username;
-                    self.created_at = response.data.created_at;
+                    self.created_at = response.data.created_at
+                        .replace("T", " at ")
+                        .slice(0, -8);
                 })
                 .catch(function (err) {
                     console.log("ERROR IN AXIOS: ", err);
@@ -36,7 +38,7 @@
             axios
                 .get("/comments/" + this.id)
                 .then(function (response) {
-                    console.log("comments:", response);
+                    console.log("COMMENTS:", response.data);
                     self.comments = response.data;
                 })
                 .catch(function (err) {
@@ -57,7 +59,7 @@
                         comment: this.comment,
                     })
                     .then(function (response) {
-                        console.log("DIOCANEEEE :", response.data);
+                        console.log("POSTED COMMENT :", response.data);
                         self.comments.unshift(response.data);
                     })
                     .catch(function (err) {
@@ -77,6 +79,8 @@
             id: null,
             comment: "",
             created_at: "",
+            lastId: null,
+            link: false,
         },
         mounted: function () {
             var self = this;
@@ -118,6 +122,12 @@
                 console.log(
                     "closeMe in the instance / parent is running! This was emitted from the component"
                 );
+            },
+            getMoreImages: function (id) {
+                var self = this;
+                axios.post("/images/more", { id }).then(function (response) {
+                    console.log("PROVA: ", response.data);
+                });
             },
         },
     });

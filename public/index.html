@@ -3,84 +3,96 @@
     <head>
         <title>My Imageboard</title>
         <link rel="stylesheet" href="/css/style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
     </head>
     <body>
+        <h1 class="title">x PAINTED UBAHN x</h1> 
         <div id="main">
-            <h1 class="title">My Imageboard with Dill <3</h1> 
-            <div class="form-container">
+            
 
-                <form>
+                <form class="form-container">
                     <input
                         v-model="title"
                         name="title"
                         type="text"
                         placeholder="title"
+                        class="input"
                     />
                     <input
                         v-model="description"
                         name="description"
                         type="text"
                         placeholder="description"
+                        class="input"
                     />
                     <input
                         v-model="username"
                         name="username"
                         type="text"
                         placeholder="username"
+                        class="input"
                     />
-                    <input
-                        @change="handleChange"
-                        type="file"
-                        name="file"
-                        accept="image/*"
-                    />
-                    <button @click="handleClick">Submit</button>
+                    <label class="upload">
+                        <input
+                            @change="handleChange"
+                            type="file"
+                            name="file"
+                            accept="image/*"
+                        />
+                    </label>
+                    <button @click="handleClick" class="submit-btn">Submit</button>
                 </form>
-            </div>
+
             <div class="container">
 
                 <div v-for="image in images" class="img-container"  >
                     <img class="card-img" v-bind:src="image.url" alt="" @click="imgClick(image.id)"/>
 
-                    <h4 class="img-title">{{image.title}}</h4>
-                    <p>{{image.description}}</p>
+                    <h4 class="img-title" @click="imgClick(image.id)">{{image.title}} </h4>
+                    <!-- <p>{{image.description}}</p> -->
                 </div>
             </div>
-            
+
             <first-component v-if='id' :id='id' @close='closeMe'></first-component>
         </div>
         <script id='template' type='text/x-template'>
-            <div class="modal">
-                <div><a id="x-modal" @click='closeModal'>X</a></div>
-                <img :src="url" class="modal-img">
-                <h1>{{title}}</h1>
-                <p>{{description}}</p>
-                <p>Uploaded by {{username}} on {{created_at}}</p>
-                <form action="">
-                    <input
-                        v-model="comment"
-                        name="comment"
-                        type="text"
-                        placeholder="your comment"
-                    />
-                    <input
-                        v-model="user"
-                        name="username"
-                        type="text"
-                        placeholder="your username"
-                    />
-                    <button @click.prevent="postComments">Comment</button>
-                </form>
-                <div class="comments-container">
+            <div class="overlay" @click.self='closeModal'>
 
-                        <div v-for="comment in comments">
-                            <div class="comment">
-
-                                <h4>{{comment.comment}}</h4>
-                                <p>{{comment.username}} on {{comment.created_at}}</p>
+                <div class="modal">
+                    <div><a id="x-modal" @click='closeModal'>X</a></div>
+                    <img :src="url" class="modal-img">
+                    <h1 class="modal-title">{{title}}</h1>
+                    <p class="description" class="description">{{description}}</p>
+                    <p class="user">Uploaded by <strong>{{username}}</strong> on {{created_at}}</p>
+                    <form action="" class="comment-form">
+                        <input
+                            v-model="comment"
+                            name="comment"
+                            type="text"
+                            placeholder="your comment"
+                            class="comment-input"
+                        />
+                        <input
+                            v-model="user"
+                            name="username"
+                            type="text"
+                            placeholder="your username"
+                            class="comment-input"
+                        />
+                        <button @click.prevent="postComments" class="comment-btn">Comment</button>
+                    </form>
+                    <div class="comments-container">
+    
+                            <div v-for="comment in comments">
+                                <div class="comment">
+    
+                                    <h4>{{comment.comment}}</h4>
+                                    <p>Posted by <strong>{{comment.username}}</strong> on {{comment.created_at.replace("T", " at ").slice(0, -8)}}</p>
+                                </div>
                             </div>
-                        </div>
- 
+     
+                    </div>
                 </div>
             </div>
         </script>

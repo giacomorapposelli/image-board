@@ -1,33 +1,43 @@
 body {
-    background-color: rgb(255, 243, 177);
+    background-color: rgb(255, 247, 203);
     margin: 0;
     box-sizing: border-box;
-    height: 100vh;
+    min-height: 100vh;
+    font-family: "Righteous", cursive;
 }
 
 .title {
     text-align: center;
+    font-size: 60px;
+    color: tomato;
+}
+.error {
+    text-align: center;
 }
 
 #main {
+    margin-top: 1%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
 .form-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    height: 10%;
+    width: 100%;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 4%;
+    margin-left: 3%;
+    column-gap: 2%;
+    row-gap: 8%;
+    margin-bottom: 10%;
 }
 
 .img-container {
@@ -36,8 +46,10 @@ body {
     align-items: center;
     justify-content: center;
     width: 350px;
+    height: 280px;
     border: 2px solid tomato;
     border-radius: 5px;
+    margin-bottom: 2%;
 }
 
 .card-img {
@@ -46,26 +58,50 @@ body {
     height: 200px;
     object-fit: cover;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.card-img:hover {
+    filter: brightness(0.7);
 }
 
 .img-title {
     color: tomato;
     font-size: 20px;
+    margin-top: 6%;
 }
 
+.img-title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
 .modal {
-    /* display: none; */
     width: 80%;
     height: 95%;
-    z-index: 1;
+    z-index: 2;
     border: 3px solid black;
     border-radius: 15px;
     position: absolute;
+    left: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(255, 250, 224);
 }
 
 #x-modal {
@@ -76,7 +112,12 @@ body {
     color: gray;
     font-size: 30px;
     cursor: pointer;
-    font-family: fantasy;
+    font-family: "Righteous", cursive;
+}
+
+#x-modal:hover {
+    color: black;
+    font-size: 34px;
 }
 
 .comments-container {
@@ -93,10 +134,81 @@ body {
     padding-top: 1px;
     padding-bottom: 1px;
     margin-bottom: 1%;
-    background-color: rgb(185, 185, 185);
+    background-color: rgba(255, 99, 71, 0.527);
 }
 
 .modal-img {
     height: 300px;
     margin-top: 1%;
+}
+
+.input,
+.comment-input {
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: rgb(255, 247, 203);
+    font-size: 18px;
+    outline: none;
+    font-family: "Righteous", cursive;
+}
+
+.comment-input {
+    background-color: rgb(255, 250, 224);
+}
+
+.input:focus {
+    border-bottom: 2px solid tomato;
+    color: tomato;
+}
+
+.comment-input:focus {
+    border-bottom: 2px solid tomato;
+    color: tomato;
+}
+
+.submit-btn,
+.comment-btn {
+    font-size: 18px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(255, 247, 203);
+    outline: none;
+    cursor: pointer;
+    font-family: "Righteous", cursive;
+}
+
+.submit-btn:hover {
+    color: tomato;
+    border: 2px solid tomato;
+}
+
+.comment-btn {
+    background-color: rgb(255, 250, 224);
+    border: 2px solid black;
+}
+
+.comment-btn:hover {
+    border: 2px solid tomato;
+    color: tomato;
+}
+
+.description {
+    font-size: 22px;
+}
+
+.modal-title {
+    font-size: 39px;
+    padding-top: 1%;
+}
+
+.modal-title,
+.description,
+.user {
+    color: tomato;
+    margin-top: 0;
+}
+
+.comment-form {
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
