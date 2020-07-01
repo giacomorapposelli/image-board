@@ -53,11 +53,12 @@
                     <!-- <p>{{image.description}}</p> -->
                 </div>
             </div>
+            <button v-if="more" class="more" @click="getMoreImgs">More!</button>
 
             <first-component v-if='id' :id='id' @close='closeMe'></first-component>
         </div>
         <script id='template' type='text/x-template'>
-            <div class="overlay" @click.self='closeModal'>
+            <div class="overlay" @click='closeModal'>
 
                 <div class="modal">
                     <div><a id="x-modal" @click='closeModal'>X</a></div>

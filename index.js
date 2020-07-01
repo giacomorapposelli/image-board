@@ -6,6 +6,7 @@ const {
     getImageInfo,
     getImageComments,
     addComment,
+    getMoreImages,
 } = require("./db");
 
 app.use(express.static("public"));
@@ -102,6 +103,13 @@ app.post("/comments", (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+});
+
+app.get("/images/more/:id", (req, res) => {
+    getMoreImages(req.params.id).then(({ rows }) => {
+        console.log(rows);
+        res.json(rows);
+    });
 });
 
 app.listen(8080, () => console.log("IB server is listening...."));

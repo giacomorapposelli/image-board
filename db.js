@@ -11,7 +11,8 @@ if (process.env.DATABASE_URL) {
 exports.addImg = () => {
     return db.query(`
         SELECT * FROM images
-        ORDER BY id DESC;
+        ORDER BY id DESC
+        LIMIT 6;
     `);
 };
 
@@ -55,5 +56,18 @@ exports.addComment = (imageId, username, comment) => {
         VALUES($1,$2,$3) RETURNING *;
         `,
         [imageId, username, comment]
+    );
+};
+
+exports.getMoreImages = (lastId) => {
+    return db.query(
+        `SELECT *, (SELECT min(id)
+        FROM images)
+        AS last_id
+        FROM images
+        WHERE id < $1
+        ORDER BY id DESC
+        LIMIT 6`,
+        [lastId]
     );
 };

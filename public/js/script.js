@@ -80,7 +80,7 @@
             comment: "",
             created_at: "",
             lastId: null,
-            link: false,
+            more: true,
         },
         mounted: function () {
             var self = this;
@@ -123,10 +123,18 @@
                     "closeMe in the instance / parent is running! This was emitted from the component"
                 );
             },
-            getMoreImages: function (id) {
+            getMoreImgs: function (lastId) {
                 var self = this;
-                axios.post("/images/more", { id }).then(function (response) {
-                    console.log("PROVA: ", response.data);
+                console.log("IMAGES", self.images);
+                lastId = self.images[self.images.length - 1].id;
+                axios.get("/images/more/" + lastId).then(function (response) {
+                    self.images = self.images.concat(response.data);
+                    if (
+                        response.data[response.data.length - 1].id ==
+                        response.data[response.data.length - 1].last_id
+                    ) {
+                        self.more = false;
+                    }
                 });
             },
         },
