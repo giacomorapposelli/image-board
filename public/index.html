@@ -7,8 +7,8 @@
 
     </head>
     <body>
-        <h1 class="title">x PAINTED UBAHN x</h1> 
-        <div id="main">
+        <div id="main" v-bind:class="{ active: isActive }">
+            <h1 class="title">x PAINTED UBAHN x</h1> 
             
 
                 <form class="form-container">
@@ -61,7 +61,7 @@
             <first-component v-if='id' :id='id' @close='closeMe'></first-component>
         </div>
         <script id='template' type='text/x-template'>
-            <div class="overlay" @click='closeModal'>
+                    <div class="overlay" @click.self='closeModal'>
 
                 <div class="modal">
                     <div><a id="x-modal" @click='closeModal'>X</a></div>

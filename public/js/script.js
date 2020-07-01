@@ -82,6 +82,7 @@
             lastId: null,
             more: true,
             noMore: false,
+            isActive: false,
         },
         mounted: function () {
             var self = this;
@@ -113,6 +114,7 @@
             imgClick: function (id) {
                 console.log("this: ", this);
                 this.id = id;
+                this.isActive = true;
             },
 
             handleChange: function (e) {
@@ -120,6 +122,7 @@
             },
             closeMe: function () {
                 this.id = null;
+                this.isActive = false;
                 console.log(
                     "closeMe in the instance / parent is running! This was emitted from the component"
                 );
