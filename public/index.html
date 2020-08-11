@@ -35,16 +35,18 @@
                         class="input"
                         required
                     />
-                    <label class="upload">
-                        <input
-                            @change="handleChange"
-                            type="file"
-                            name="file"
-                            accept="image/*"
-                            required
-                        />
-                    </label>
+                    
+                    <input
+                    @change="handleChange"
+                    type="file"
+                    name="file"
+                    accept="image/*"
+                    required
+                    />
+                    
                     <button @click="handleClick" class="submit-btn">Submit</button>
+                    
+                    
                 </form>
 
             <div class="container">
@@ -61,7 +63,7 @@
             <first-component v-if='id' :id='id' @close='closeMe'></first-component>
         </div>
         <script id='template' type='text/x-template'>
-                    <div class="overlay" @click.self='closeModal'>
+            <div class="overlay" @click.self='closeModal'>
 
                 <div class="modal">
                     <div><a id="x-modal" @click='closeModal'>X</a></div>
