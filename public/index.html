@@ -1,68 +1,79 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Imageboard</title>
+        <title>PAINTED UBAHN</title>
         <link rel="stylesheet" href="/css/style.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-
+        <link
+            href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
+            rel="stylesheet"
+        />
     </head>
     <body>
         <div id="main" v-bind:class="{ active: isActive }">
-            <h1 class="title">x PAINTED UBAHN x</h1> 
-            
+            <h1 class="title">x PAINTED UBAHN x</h1>
 
-                <form class="form-container">
-                    <input
-                        v-model="title"
-                        name="title"
-                        type="text"
-                        placeholder="title"
-                        class="input"
-                        required
-                    />
-                    <input
-                        v-model="description"
-                        name="description"
-                        type="text"
-                        placeholder="description"
-                        class="input"
-                    />
-                    <input
-                        v-model="username"
-                        name="username"
-                        type="text"
-                        placeholder="username"
-                        class="input"
-                        required
-                    />
-                    
-                    <input
+            <form class="form-container">
+                <input
+                    v-model="title"
+                    name="title"
+                    type="text"
+                    placeholder="title"
+                    class="input"
+                    required
+                />
+                <input
+                    v-model="description"
+                    name="description"
+                    type="text"
+                    placeholder="description"
+                    class="input"
+                />
+                <input
+                    v-model="username"
+                    name="username"
+                    type="text"
+                    placeholder="username"
+                    class="input"
+                    required
+                />
+
+                <input
                     @change="handleChange"
                     type="file"
                     name="file"
                     accept="image/*"
                     required
-                    />
-                    
-                    <button @click="handleClick" class="submit-btn">Submit</button>
-                    
-                    
-                </form>
+                />
+
+                <button @click="handleClick" class="submit-btn">Submit</button>
+            </form>
 
             <div class="container">
+                <div v-for="image in images" class="img-container">
+                    <img
+                        class="card-img"
+                        v-bind:src="image.url"
+                        alt=""
+                        @click="imgClick(image.id)"
+                    />
 
-                <div v-for="image in images" class="img-container"  >
-                    <img class="card-img" v-bind:src="image.url" alt="" @click="imgClick(image.id)"/>
-
-                    <h4 class="img-title" @click="imgClick(image.id)">{{image.title}} </h4>
+                    <h4 class="img-title" @click="imgClick(image.id)">
+                        {{image.title}}
+                    </h4>
                     <!-- <p>{{image.description}}</p> -->
                 </div>
             </div>
-            <button v-if="more" class="more" @click="getMoreImgs">Show more!</button>
+            <button v-if="more" class="more" @click="getMoreImgs">
+                Show more!
+            </button>
             <p v-if="noMore" class="no-more">No more images!</p>
-            <first-component v-if='id' :id='id' @close='closeMe'></first-component>
+            <first-component
+                v-if="id"
+                :id="id"
+                @close="closeMe"
+            ></first-component>
         </div>
-        <script id='template' type='text/x-template'>
+        <script id="template" type="text/x-template">
             <div class="overlay" @click.self='closeModal'>
 
                 <div class="modal">
@@ -89,15 +100,15 @@
                         <button @click.prevent="postComments" class="comment-btn">Comment</button>
                     </form>
                     <div class="comments-container">
-    
+
                             <div v-for="comment in comments">
                                 <div class="comment">
-    
+
                                     <h4>{{comment.comment}}</h4>
                                     <p>Posted by <strong>{{comment.username}}</strong> on {{comment.created_at.replace("T", " at ").slice(0, -8)}}</p>
                                 </div>
                             </div>
-     
+
                     </div>
                 </div>
             </div>
