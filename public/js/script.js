@@ -22,9 +22,7 @@
             axios
                 .get("/image/" + this.id)
                 .then(function (response) {
-                    console.log("RESPONSE: ", response);
                     self.url = response.data.url;
-                    console.log("RES DATA URL:   ", response.data.url);
                     self.title = response.data.title;
                     self.description = response.data.description;
                     self.username = response.data.username;
@@ -48,6 +46,7 @@
         methods: {
             closeModal: function () {
                 this.$emit("close");
+                document.body.style.overflow = "";
             },
             postComments: function (e) {
                 var self = this;
@@ -87,7 +86,6 @@
         mounted: function () {
             var self = this;
             axios.get("/images").then(function (response) {
-                console.log("MOUNTED RESPONSE: ", response);
                 self.images = response.data;
             });
         },
@@ -112,9 +110,9 @@
                     });
             },
             imgClick: function (id) {
-                console.log("this: ", this);
                 this.id = id;
                 this.isActive = true;
+                document.body.style.overflow = "hidden";
             },
 
             handleChange: function (e) {
@@ -123,13 +121,9 @@
             closeMe: function () {
                 this.id = null;
                 this.isActive = false;
-                console.log(
-                    "closeMe in the instance / parent is running! This was emitted from the component"
-                );
             },
             getMoreImgs: function (lastId) {
                 var self = this;
-                console.log("IMAGES", self.images);
                 lastId = self.images[self.images.length - 1].id;
                 axios.get("/images/more/" + lastId).then(function (response) {
                     self.images = self.images.concat(response.data);

@@ -53,12 +53,15 @@
 
             <div class="container">
                 <div v-for="image in images" class="img-container">
-                    <img
-                        class="card-img"
-                        v-bind:src="image.url"
-                        alt=""
-                        @click="imgClick(image.id)"
-                    />
+                    <div class="img-frame">
+                        
+                        <img
+                            class="card-img"
+                            v-bind:src="image.url"
+                            alt=""
+                            @click="imgClick(image.id)"
+                        />
+                    </div>
                     <h2 class="img-title" @click="imgClick(image.id)">
                         {{image.title}}
                     </h2>
