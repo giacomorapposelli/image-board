@@ -59,17 +59,16 @@
                         alt=""
                         @click="imgClick(image.id)"
                     />
-
-                    <h4 class="img-title" @click="imgClick(image.id)">
+                    <h2 class="img-title" @click="imgClick(image.id)">
                         {{image.title}}
-                    </h4>
+                    </h2>
                     <!-- <p>{{image.description}}</p> -->
                 </div>
+                <p v-if="noMore" class="no-more">No more images!</p>
+                <button v-if="more" class="more" @click="getMoreImgs">
+                    Show more!
+                </button>
             </div>
-            <button v-if="more" class="more" @click="getMoreImgs">
-                Show more!
-            </button>
-            <p v-if="noMore" class="no-more">No more images!</p>
             <first-component
                 v-if="id"
                 :id="id"

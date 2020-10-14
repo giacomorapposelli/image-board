@@ -22,11 +22,10 @@ body {
 }
 
 #main {
+    width: 100%;
+    height: 100%;
     margin-top: 1%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
 }
 
 .form-container {
@@ -38,20 +37,21 @@ body {
 }
 
 .container {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 30%);
+    grid-template-rows: repeat(2, 1fr);
     margin-top: 4%;
-    column-gap: 4%;
-    margin-right: 7%;
+    margin-left: 1%;
+    grid-gap: 4%;
 }
 
 .img-container {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 350px;
-    height: 280px;
     border: 2px solid tomato;
     border-radius: 5px;
     margin-bottom: 12%;
@@ -59,9 +59,8 @@ body {
 }
 
 .card-img {
-    margin-top: 10px;
-    width: 330px;
-    height: 200px;
+    height: 70%;
+    width: 90%;
     object-fit: cover;
     cursor: pointer;
     border-radius: 5px;
@@ -73,8 +72,6 @@ body {
 
 .img-title {
     color: tomato;
-    font-size: 20px;
-    margin-top: 6%;
 }
 
 .img-title:hover {
@@ -149,6 +146,10 @@ body {
     border-radius: 15px;
 }
 
+input {
+    width: 20%;
+}
+
 .input,
 .comment-input {
     border: none;
@@ -176,7 +177,7 @@ body {
 .submit-btn,
 .comment-btn,
 .more {
-    font-size: 18px;
+    /* font-size: 18px; */
     border: 2px solid black;
     border-radius: 10px;
     background-color: rgb(255, 247, 203);
@@ -209,8 +210,17 @@ body {
 }
 
 .more {
-    width: 10%;
+    width: 30%;
     margin-bottom: 4%;
+    justify-self: center;
+    grid-column-start: 2;
+}
+
+.no-more {
+    font-size: 18px;
+    margin-bottom: 12%;
+    justify-self: center;
+    grid-column-start: 2;
 }
 
 .description {
@@ -234,12 +244,19 @@ body {
     margin-bottom: 2%;
 }
 
-.no-more {
-    font-size: 18px;
-    padding-bottom: 2%;
+@media screen and (max-width: 720px) {
+    .title {
+        font-size: 45px;
+    }
+
+    .container {
+        grid-template-columns: repeat(2, 45%);
+        margin-left: 2%;
+        grid-gap: 6%;
+    }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 450px) {
     .title {
         font-size: 36px;
     }
@@ -265,10 +282,23 @@ body {
         flex-direction: column;
         justify-content: space-evenly;
         height: 50%;
-        width: 50%;
+        width: 60%;
+        margin-left: 20%;
+    }
+    input {
+        width: 100%;
+    }
+
+    .img-container {
+        height: 100%;
+        width: 90%;
+        margin: 5%;
+    }
+    .card-img {
+        margin-top: 5%;
     }
     .more {
-        width: 40%;
+        width: 30%;
         margin-bottom: 4%;
     }
     .modal-img {
